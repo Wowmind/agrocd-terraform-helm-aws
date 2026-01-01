@@ -7,11 +7,11 @@ replicas: 1
 image:
   repository: myapp
   tag: latest
-containerPort: 8080
+containerPort: 5002
 service:
   type: LoadBalancer
-  port: 8080
-  targetPort: 8080
+  port: 5002
+  targetPort: 5002
 resources: {
   limits: {
     cpu: 250m,
