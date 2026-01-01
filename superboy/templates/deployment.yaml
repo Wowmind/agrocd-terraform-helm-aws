@@ -15,8 +15,9 @@ spec:
         app: {{ .Values.name }}
     spec:
       containers:
-        - name: {{ .Values.image.repository }}
+        - name: superboy
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: {{ .Values.containerPort }}
           resources:

@@ -2,10 +2,10 @@ httpRoute:
   enabled: false
 ingress:
   enabled: false
-name: myapp
+name: superboy
 replicas: 1
 image:
-  repository: my-app
+  repository: superboy
   tag: latest
 containerPort: 5002
 service:
