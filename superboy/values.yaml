@@ -1,5 +1,7 @@
 httpRoute:
   enabled: false
+ingress:
+  enabled: false
 name: nginx_01
 replicas: 1
 image:
