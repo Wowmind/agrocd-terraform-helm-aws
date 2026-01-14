@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'app/**'
 
 env:
   AWS_REGION: us-east-1
@@ -34,11 +36,20 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $ECR_REGISTRY/magatron-eks-app:$IMAGE_TAG ./app
-          docker push $ECR_REGISTRY/magatron-eks-app:$IMAGE_TAG
+          # Build with commit SHA
+          docker build -t $ECR_REGISTRY/$ECR_REPO:$IMAGE_TAG ./app
+          
+          # Also tag as latest
+          docker tag $ECR_REGISTRY/$ECR_REPO:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPO:latest
+          
+          # Push both tags
+          docker push $ECR_REGISTRY/$ECR_REPO:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPO:latest
+          
+          echo " Pushed image: $ECR_REGISTRY/$ECR_REPO:$IMAGE_TAG"
+          echo " Pushed image: $ECR_REGISTRY/$ECR_REPO:latest"
 
-      - name: Update kubeconfig
+      - name: Restart deployment (force pull latest)
         run: |
-          aws eks update-kubeconfig \
-            --region $AWS_REGION \
-            --name $EKS_CLUSTER
+          aws eks update-kubeconfig --region $AWS_REGION --name $EKS_CLUSTER
+        
