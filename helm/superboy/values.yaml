@@ -2,10 +2,10 @@ httpRoute:
   enabled: false
 ingress:
   enabled: false
-name: magatron-eks-app
+name: superboy
 replicas: 1
 image:
-  repository: superboy
+  repository: magatron-eks-app
   tag: ""
 containerPort: 5000
 service:
