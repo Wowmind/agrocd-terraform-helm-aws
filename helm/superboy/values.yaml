@@ -5,7 +5,7 @@ ingress:
 name: superboy
 replicas: 1
 image:
-  repository: magatron-eks-app
+  repository: 182889640030.dkr.ecr.us-east-1.amazonaws.com/magatron-eks-app
   tag: latest
 containerPort: 5000
 service:
