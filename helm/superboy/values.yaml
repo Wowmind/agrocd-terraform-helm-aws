@@ -3,15 +3,15 @@ httpRoute:
 ingress:
   enabled: false
 name: superboy
-replicas: 1
+replicas: 2
 image:
   repository: superboy
   tag: latest
-containerPort: 5002
+containerPort: 5000
 service:
   type: LoadBalancer
-  port: 5002
-  targetPort: 5002
+  port: 80
+  targetPort: 5000
 resources: {
   limits: {
     cpu: 250m,
