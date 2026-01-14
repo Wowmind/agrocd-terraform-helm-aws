@@ -2,11 +2,11 @@ httpRoute:
   enabled: false
 ingress:
   enabled: false
-name: superboy
+name: magatron-eks-app
 replicas: 1
 image:
-  repository: 182889640030.dkr.ecr.us-east-1.amazonaws.com/magatron-eks-app
-  tag: latest
+  repository: superboy
+  tag: ""
 containerPort: 5000
 service:
   type: LoadBalancer
