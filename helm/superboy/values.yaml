@@ -6,7 +6,7 @@ name: superboy
 replicas: 1
 image:
   repository: magatron-eks-app
-  tag: ""
+  tag: latest
 containerPort: 5000
 service:
   type: LoadBalancer
