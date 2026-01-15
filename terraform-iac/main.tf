@@ -49,13 +49,13 @@ resource "aws_eks_node_group" "megatron_nodes" {
   node_role_arn  = aws_iam_role.eks_node_role.arn
   subnet_ids     = data.aws_subnets.eks.ids
 
-  instance_types = ["t3.small"]   
+  instance_types = ["t3.medium"]   
   disk_size      = 20
 
   scaling_config {
-    desired_size = 1
+    desired_size = 2
     min_size     = 1
-    max_size     = 1
+    max_size     = 3
   }
 
   capacity_type = "ON_DEMAND"
